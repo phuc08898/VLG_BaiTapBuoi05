@@ -6,11 +6,9 @@
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
 
-        // Quan hệ với Category
+        // Tham chiếu đến danh mục
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category Category { get; set; } // Mối quan hệ với Category
     }
-
 }

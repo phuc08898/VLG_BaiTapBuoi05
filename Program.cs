@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VLG_BaiTapBuoi05.data;
+using VLG_BaiTapBuoi05.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
