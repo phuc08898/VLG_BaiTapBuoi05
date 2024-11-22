@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VLG_BaiTapBuoi05.Models;
 
-namespace VLG_BaiTapBuoi05.data
+namespace VLG_BaiTapBuoi05.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+        // Các DbSet tương ứng với các bảng trong cơ sở dữ liệu
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -36,6 +36,13 @@ namespace VLG_BaiTapBuoi05.data
                 .HasOne(p => p.Category)  // Post có một Category
                 .WithMany(c => c.Posts)   // Category có nhiều Post
                 .HasForeignKey(p => p.CategoryId);  // Khóa ngoại
+
+            // Mối quan hệ giữa Category và SubCategory (cha-con)
+            modelBuilder.Entity<Category>()
+                .HasMany(c => c.SubCategories)  // Category có nhiều SubCategories (danh mục con)
+                .WithOne(c => c.ParentCategory) // Mỗi SubCategory có một danh mục cha
+                .HasForeignKey(c => c.ParentId) // Khóa ngoại trỏ đến ParentId
+                .OnDelete(DeleteBehavior.Restrict);  // Không xóa tự động SubCategory khi xóa Category cha
 
             base.OnModelCreating(modelBuilder);
         }
