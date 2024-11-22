@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VLG_BaiTapBuoi05.Models;
 using VLG_BaiTapBuoi05.Data;
-using System.Linq;
 
 namespace VLG_BaiTapBuoi05.Controllers
 {
